@@ -43,11 +43,9 @@ func ConvertReturnTypes(item types.StackItems) (results []interface{}) {
 			results = append(results, common.ToHexString([]byte{0}))
 		}
 	case *types.Array:
-		var arr []interface{}
 		for _, val := range v.GetArray() {
-			arr = append(arr, ConvertReturnTypes(val)...)
+			results = append(results, ConvertReturnTypes(val)...)
 		}
-		results = append(results, arr)
 	case *types.Interop:
 		results = append(results, common.ToHexString(v.GetInterface().ToArray()))
 	case types.StackItems:
